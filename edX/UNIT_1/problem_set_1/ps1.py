@@ -54,15 +54,38 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    ### !00 % GPT ###
-    # sort cows by weight in descending order
-    remaining_cows = sorted(cows.items(), key = lambda x: x[1], reverse = True)
+    # create a new dicionary of cows, sorted by weight
+    sorted_cows = sorted(cows.items(), key=lambda x: x[1], reverse=True)
 
-    # store trips
+    # initialize the return list
     trips = []
 
-    # while a remainign cow exists in the list
-    while remaining_cows:
+    print(sorted_cows)
+
+    # while a key, value pair still exists:
+    while sorted_cows:
+        # reinitialize the curernt trip
+        current_trip = []
+        # reinitialize the current weight
+        current_weight = 0
+        # create a copy of sorted_cows
+        remaining_cows = sorted_cows[:]
+
+        for cow, weight in remaining_cows:
+            if current_weight + weight <= limit:
+                current_trip.append(cow)
+                current_weight += weight
+                sorted_cows.remove((cow, weight))
+
+        trips.append(current_trip)
+
+    return trips
+
+
+
+
+
+
 
 
 
@@ -88,7 +111,7 @@ def brute_force_cow_transport(cows,limit=10):
     trips
     """
     # TODO: Your code here
-    pass
+    
 
         
 # Problem 3
@@ -116,7 +139,4 @@ lines to print the result of your problem.
 """
 
 cows = load_cows("/home/riley/Downloads/space_cows/ps1_cow_data.txt")
-limit=100
-
-print(greedy_cow_transport(cows, limit))
-print(brute_force_cow_transport(cows, limit))
+print(greedy_cow_transport(cows, 10))
