@@ -62,9 +62,6 @@ def greedy_cow_transport(cows,limit=10):
     # initialize the return list
     trips = []
 
-    print(cows)
-    print(sorted_cows)
-
     # while a key, value pair still exists:
     while sorted_cows:
         # reinitialize the curernt trip
@@ -84,7 +81,6 @@ def greedy_cow_transport(cows,limit=10):
         trips.append(current_trip)
 
     return trips
-
 
 
 # Problem 2
@@ -109,12 +105,10 @@ def brute_force_cow_transport(cows,limit=10):
     trips
     """
     sorted_cows = sorted(cows.items(), key=lambda x: x[1], reverse=True)
-    
-    print(cows)
-    print(sorted_cows)
 
     # enumerate all possible ways that the cows can be divided into seperate trips
-    return cows
+    return sorted_cows
+
 
         
 # Problem 3
@@ -132,12 +126,22 @@ def compare_cow_transport_algorithms():
     Does not return anything.
     """
     # TODO: Your code here
-    
-    # return number of trips, respectively
-    trips1 = len(greedy_cow_transport(cows, 10))
-    trips2 = len(brute_force_cow_transport(cows, 10))
+    cows = load_cows("/home/riley/Downloads/space_cows/ps1_cow_data.txt")
+    limit = 10
 
-    return trips1, trips2
+    
+    # calculate execution times; print results
+    a = time.time()
+    trips1 = len(greedy_cow_transport(cows, limit))
+    b = time.time()
+    print('Method 1:', trips1, ':', b - a)
+
+    a = time.time()
+    trips2 = len(brute_force_cow_transport(cows, limit))
+    b = time.time()
+    print('Method 2:', trips2, ':', b - a)
+
+    return 'Done'
 
 
 
@@ -147,7 +151,8 @@ Do not submit this along with any of your answers. Uncomment the last two
 lines to print the result of your problem.
 """
 
-cows = load_cows("/home/riley/Downloads/space_cows/ps1_cow_data.txt")
+
 # greedy_cow_transport(cows, 10))
+cows = load_cows("/home/riley/Downloads/space_cows/ps1_cow_data.txt")
 print(brute_force_cow_transport(cows, 10))
 # print(compare_cow_transport_algorithms())
