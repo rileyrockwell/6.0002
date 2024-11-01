@@ -57,8 +57,6 @@ def greedy_cow_transport(cows,limit=10):
     # create a new dicionary of cows, sorted by weight
     sorted_cows = sorted(cows.items(), key=lambda x: x[1], reverse=True)
 
-    return sorted_cows
-
     # initialize the return list
     trips = []
 
@@ -104,11 +102,28 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    sorted_cows = sorted(cows.items(), key=lambda x: x[1], reverse=True)
-
-    # enumerate all possible ways that the cows can be divided into seperate trips
-    return sorted_cows
-
+    # Get all partitions of the cows
+    partitions = get_partitions(cows.keys())
+    
+    # Initialize the best allocation and minimum trips
+    best_allocation = None
+    min_trips = float('inf')
+    
+    # Iterate over each partition
+    for partition in partitions:
+        valid_partition = True
+        # Check if each trip in the partition is valid
+        for trip in partition:
+            trip_weight = sum(cows[cow] for cow in trip)
+            if trip_weight > limit:
+                valid_partition = False
+                break
+        # If the partition is valid and has fewer trips, update the best allocation
+        if valid_partition and len(partition) < min_trips:
+            best_allocation = partition
+            min_trips = len(partition)
+    
+    return best_allocation
 
         
 # Problem 3
@@ -154,5 +169,5 @@ lines to print the result of your problem.
 
 # greedy_cow_transport(cows, 10))
 cows = load_cows("/home/riley/Downloads/space_cows/ps1_cow_data.txt")
-print(brute_force_cow_transport(cows, 10))
-# print(compare_cow_transport_algorithms())
+# print(brute_force_cow_transport(cows, 10))
+print(compare_cow_transport_algorithms())
