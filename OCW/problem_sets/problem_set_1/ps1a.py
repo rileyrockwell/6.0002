@@ -24,7 +24,7 @@ def load_cows(filename):
     Returns:
     a dictionary of cow name (string), weight (int) pairs
     """
-    passss
+    pass
 
 # Problem 2
 def greedy_cow_transport(cows,limit=10):
