@@ -9,3 +9,7 @@ def powerSet(items):
             if (i >> j) % 2 == 1:
                 combo.append(items[j])
         yield combo
+
+
+items = list(range(5))
+print(powerSet(items))

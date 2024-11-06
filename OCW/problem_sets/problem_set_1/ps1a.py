@@ -55,8 +55,29 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    sorted_cows = sorted(cows.items(), key=lambda item: item[1], reverse=True)
+
+    # list to hold all trips
+    trips = []
+    # will be modifying remaining cows
+    remaining_cows = sorted_cows[:]
+
+
+    while remaining_cows:
+        trip = []
+        total_weight = 0
+
+        # try to add cows to the current trip
+        for cow, weight in remaining_cows[:]:
+            if total_weight + weight <= limit:
+                trip.append(cow)
+                total_weight += weight
+                remaining_cows.remove((cow, weight))
+
+        trips.append(trip)
+
+    return trips
+    
 
 # Problem 3
 def brute_force_cow_transport(cows,limit=10):
@@ -80,8 +101,27 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    best_partition = None
+
+    # iterate over all partitions of the cow list
+    for partition in get_partitions(cows.keys()):
+        valid_partition = True
+
+        # ensure each trip in the current partition meets the weight limit
+        for trip in partition:
+            total_weight = sum(cows[cow] for cow in trip)
+            if total_weight > limit:
+                valid_partition = False
+                break
+
+        if valid_partition:
+            if best_partition is None or len(partition) < len(best_partition):
+                best_partition = partition
+
+    return best_partition
+
+
+
         
 # Problem 4
 def compare_cow_transport_algorithms():
@@ -97,10 +137,25 @@ def compare_cow_transport_algorithms():
     Returns:
     Does not return anything.
     """
-    # TODO: Your code here
-    pass
+    cows = load_cows(filename)
+    
+    a = time.time()
+    greedy_cow_transport(cows, limit = 10)
+    b = time.time()
+
+    c = time.time()
+    brute_force_cow_transport(cows)
+    d = time.time()
+
+    print('Greedy:', round(b - a, 10))
+    print('Brute:', round(c - d, 10))
+
+    return ''
+
 
 
 if __name__ == "__main__":    
     filename = '/home/riley/6.0002/OCW/problem_sets/problem_set_1/ps1_cow_data.txt'
-    print(load_cows(filename))
+    cows = load_cows(filename)
+
+    print(compare_cow_transport_algorithms())
