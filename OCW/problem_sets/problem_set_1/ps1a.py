@@ -24,7 +24,13 @@ def load_cows(filename):
     Returns:
     a dictionary of cow name (string), weight (int) pairs
     """
-    pass
+    cows = {}
+    with open(filename, 'r') as file:
+        for line in file:
+            name, weight = line.strip().split(',')
+            cows[name] = int(weight)
+    return cows
+
 
 # Problem 2
 def greedy_cow_transport(cows,limit=10):
@@ -93,3 +99,8 @@ def compare_cow_transport_algorithms():
     """
     # TODO: Your code here
     pass
+
+
+if __name__ == "__main__":    
+    filename = '/home/riley/6.0002/OCW/problem_sets/problem_set_1/ps1_cow_data.txt'
+    print(load_cows(filename))
