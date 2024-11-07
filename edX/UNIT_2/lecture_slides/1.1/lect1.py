@@ -26,10 +26,8 @@ def buildMenu(names, values, calories):
     return menu
 
 def greedy(items, maxCost, keyFunction):
-    """
-    Assumes items a list, maxCost >= 0,
-    keyFunction maps elements of items to numbers
-    """
+    """Assumes items a list, maxCost >= 0,
+         keyFunction maps elements of items to numbers"""
     itemsCopy = sorted(items, key = keyFunction,
                        reverse = True)
     result = []
@@ -57,7 +55,7 @@ def testGreedys(foods, maxUnits):
                lambda x: 1/Food.getCost(x))
     print('\nUse greedy by density to allocate', maxUnits,
           'calories')
-    testGreedy(foods, maxUnits, Food.density)   
+    testGreedy(foods, maxUnits, Food.density)
 
 
 names = ['wine', 'beer', 'pizza', 'burger', 'fries',
@@ -66,3 +64,4 @@ values = [89,90,95,100,90,79,50,10]
 calories = [123,154,258,354,365,150,95,195]
 foods = buildMenu(names, values, calories)
 testGreedys(foods, 1000)
+    
