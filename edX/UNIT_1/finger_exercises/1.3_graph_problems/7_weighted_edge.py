@@ -16,14 +16,15 @@ class WeightedEdge(Edge):
     def __init__(self, src, dest, weight):
         self.src = src
         self.dest = dest
-        # self.weight = ...
+        self.weight = weight
 
     def getWeight(self):
-        # Your code here
-        pass
+        return self.weight
 
     def __str__(self):
-        return f"{self.src} -> {self.dest} ({self.getWeight()})"
-        
-    def getWeight(self):
-        pass
+        # return f"{self.src} -> {self.dest} ({self.getWeight()})"
+        return str(self.src) + '->' + str(self.dest) + ' (' + str(self.getWeight()) + ')'
+
+
+instance = WeightedEdge('A', 'B', 3)
+print(instance)
