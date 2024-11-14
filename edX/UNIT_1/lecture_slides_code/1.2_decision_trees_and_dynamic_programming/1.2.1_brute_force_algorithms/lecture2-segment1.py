@@ -1,5 +1,3 @@
-
-
 class Food(object):
     def __init__(self, n, v, w):
         self.name = n
@@ -96,5 +94,3 @@ foods = buildMenu(names, values, calories)
 testGreedys(foods, 750)
 print('')
 testMaxVal(foods, 750)
-
-

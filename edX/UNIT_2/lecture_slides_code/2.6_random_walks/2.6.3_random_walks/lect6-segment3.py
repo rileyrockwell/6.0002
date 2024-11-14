@@ -130,9 +130,9 @@ def simAll(drunkKinds, walkLengths, numTrials):
     for dClass in drunkKinds:
         drunkTest(walkLengths, numTrials, dClass)
         
-#random.seed(0)
-#simAll((UsualDrunk, ColdDrunk),
-#      (1, 10, 100, 1000, 10000), 100)
+random.seed(0)
+simAll((UsualDrunk, ColdDrunk),
+      (1, 10, 100, 1000, 10000), 100)
 
 
 class styleIterator(object):
@@ -212,8 +212,8 @@ def plotLocs(drunkKinds, numSteps, numTrials):
     pylab.ylabel('Steps North/South of Origin')
     pylab.legend(loc = 'upper left')
 
-random.seed(0)
-plotLocs((UsualDrunk, ColdDrunk), 10000, 1000)
+# random.seed(0)
+# plotLocs((UsualDrunk, ColdDrunk), 10000, 1000)
 
 class OddField(Field):
     def __init__(self, numHoles = 1000,

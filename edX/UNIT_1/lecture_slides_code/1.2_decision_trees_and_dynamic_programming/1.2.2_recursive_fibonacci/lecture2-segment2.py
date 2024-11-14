@@ -1,5 +1,3 @@
-
-
 class Food(object):
     def __init__(self, n, v, w):
         self.name = n
@@ -96,4 +94,3 @@ def fastFib(n, memo = {}):
 
 for i in range(121):
     print('fib(' + str(i) + ') =', fastFib(i))
-

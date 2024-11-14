@@ -16,7 +16,7 @@ def testRoll(n = 10):
         result = result + str(rollDie())
     print(result)
 
-#testRoll(5)
+# testRoll(5)
 
 random.seed(0)
 
@@ -34,7 +34,7 @@ def runSim(goal, numTrials):
     print('Estimated Probability  =',
           round(estProbability, 8))
     
-#runSim('11111', 1000)
+runSim('11111', 1000)
 
 def fracBoxCars(numTests):
     numBoxCars = 0.0

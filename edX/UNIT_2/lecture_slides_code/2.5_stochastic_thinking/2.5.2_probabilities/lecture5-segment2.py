@@ -33,7 +33,7 @@ def runSim(goal, numTrials):
     print('Estimated Probability  =',
           round(estProbability, 8))
     
-#runSim('11111', 1000000)
+runSim('11111', 1000000)
 
 def fracBoxCars(numTests):
     numBoxCars = 0
