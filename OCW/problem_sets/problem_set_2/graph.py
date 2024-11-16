@@ -64,6 +64,7 @@ class WeightedEdge(Edge):
         pass  # TODO
 
     def __str__(self):
+        # *weighted* edge; not edge (different from inherited Edge __str__ method)
         pass  # TODO
 
 

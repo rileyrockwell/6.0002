@@ -1,6 +1,10 @@
 from ps2 import *
 
-instance = Position(0, 0)
-instance1 = Position(1, 1)
-
-print(RectangularRoom(0, 0).cleanTileAtPosition(1))
+position = Position(1, 1)
+room = RectangularRoom(2, 2)
+print(room.cleanTileAtPosition(position))
+print(room.cleanTileAtPosition(Position(0, 0)))
+print(room.matrix)
+print(room.height)
+print(room.width)
+print(room.getNumCleanedTiles())
