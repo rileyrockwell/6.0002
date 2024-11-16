@@ -20,7 +20,9 @@ from graph import Digraph, Node, WeightedEdge
 # represented?
 #
 # Answer:
-#
+# Nodes: Buildings
+# Edges: Distances between buildings
+# Distances: Weighted edges?
 
 
 # Problem 2b: Implementing load_map
