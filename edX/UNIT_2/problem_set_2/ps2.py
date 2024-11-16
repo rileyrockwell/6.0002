@@ -11,6 +11,10 @@ os.environ["OPENBLAS_NUM_THREADS"] = "1"
 
 import numpy as np
 
+# a = np.array([0, 1, 2])
+# print(a)
+# print(type(a))
+
 ##################
 ## Comment/uncomment the relevant lines, depending on which version of Python you have
 ##################
@@ -87,14 +91,14 @@ class RectangularRoom(object):
         width: an integer > 0
         height: an integer > 0
         """
-        if not isinstance(width, int):
-            raise TypeError('Width must be an int')
+        # if not isinstance(width, int):
+        #     raise TypeError('Width must be an int')
 
-        if not isinstance(height, int):
-            raise TypeError('Height must be an int')
+        # if not isinstance(height, int):
+        #     raise TypeError('Height must be an int')
 
-        self.width = width
-        self.height = height
+        self.w = width
+        self.h = height
 
     def cleanTileAtPosition(self, pos):
         """
@@ -102,9 +106,15 @@ class RectangularRoom(object):
 
         Assumes that POS represents a valid position inside this room.
 
-        pos: a Position
+        pos: a Position object
         """
-        raise NotImplementedError
+        pass
+        """
+        Qs:
+        -what is the 'marker' to determine whether or not a position is cleaned?
+        -how to save this marker?
+
+        """
 
     def isTileCleaned(self, m, n):
         """
