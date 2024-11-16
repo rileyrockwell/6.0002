@@ -107,14 +107,14 @@ class RectangularRoom(object):
         Assumes that POS represents a valid position inside this room.
 
         pos: a Position object
-        """
-        pass
-        """
+
+        ###
+
         Qs:
         -what is the 'marker' to determine whether or not a position is cleaned?
-        -how to save this marker?
-
+        -how to save this 'marker'?
         """
+        return -1
 
     def isTileCleaned(self, m, n):
         """
