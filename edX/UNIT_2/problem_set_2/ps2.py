@@ -45,7 +45,7 @@ class Position(object):
     
     def getY(self):
         return self.y
-    
+           
     def getNewPosition(self, angle, speed):
         """
         Computes and returns the new Position after a single clock-tick has
@@ -82,7 +82,7 @@ class RectangularRoom(object):
     A room has a width and a height and contains (width * height) tiles. At any
     particular time, each of these tiles is either clean or dirty.
     """
-    def __init__(self, width, height):
+    def __init__(self, height, width):
         """
         Initializes a rectangular room with the specified width and height.
 
@@ -91,19 +91,20 @@ class RectangularRoom(object):
         width: an integer > 0
         height: an integer > 0
         """
-        # width > 0
-        # if not isinstance(width, int):
-        #     raise TypeError('Width must be an int')
-
-        # height > 0
-        # if not isinstance(height, int):
-        #     raise TypeError('Height must be an int')
-
-        self.width = width
         self.height = height
+        self.width = width
 
-        # generate a 'room' matrix with all zero elements
-        self.matrix = np.zeros((width, height), dtype=int)
+        matrix = []
+
+        for row in range(self.height):
+            rows = []
+
+            for column in range(self.width):
+                rows.append(0)
+            
+            matrix.append(rows)
+
+        self.matrix = np.array(matrix)
 
     def cleanTileAtPosition(self, pos):
         """
@@ -120,31 +121,27 @@ class RectangularRoom(object):
 
         return self.matrix
 
-
-
     def isTileCleaned(self, m, n):
         """
         Return True if the tile (m, n) has been cleaned.
 
-        Assumes that (m, n) represents a valid tile inside the room.
+        Assumes that (m, n) represeprint(room.cleanTileAtPosition(nts a valid tile inside the room.
 
         m: an integer
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        if self.cleanTileAtPosition(m, n) == 1:
+        if self.matrix[m][n] == 1:
             return True
-
         return False
 
-    
     def getNumTiles(self):
         """
         Return the total number of tiles in the room.
 
         returns: an integer
         """
-        return self.w * self.h
+        return self.height * self.width
 
     def getNumCleanedTiles(self):
         """
@@ -153,8 +150,9 @@ class RectangularRoom(object):
         returns: an integer
         """
         total = 0
-        for row_index in range(self.height):
-            total += sum(self.matrix[row_index])
+
+        for row in self.matrix:
+            total += sum(row)
 
         return total
 
@@ -164,11 +162,11 @@ class RectangularRoom(object):
 
         returns: a Position object.
         """
-        new_width = random.randint(0, self.w)
-        new_height = random.randint(0, self.h)
+        x = random.randint(1, self.width - 1)
+        y = random.randint(1, self.height - 1)
 
-        return Position(new_width, new_height)
-
+        return Position(x, y)
+        
     def isPositionInRoom(self, pos):
         """
         Return True if pos is inside the room.
@@ -176,14 +174,11 @@ class RectangularRoom(object):
         pos: a Position object.
         returns: True if pos is in the room, False otherwise.
         """
-        x = pos.getX()
-        y = pos.getY()
 
-        if x <= self.w and y <= self.h:
+
+        if 0 <= pos.x < self.width and 0 <= pos.y < self.height:
             return True
-
         return False
-
 
 # === Problem 2
 class Robot(object):
