@@ -6,4 +6,4 @@ def yieldAllCombos(items):
     Yields a tuple, (bag1, bag2), where each bag is represented as a list 
     of which item(s) are in each bag.
     """
-    
+    pass
