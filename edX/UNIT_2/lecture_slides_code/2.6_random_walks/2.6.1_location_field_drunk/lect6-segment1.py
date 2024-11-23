@@ -58,7 +58,7 @@ class Drunk(object):
         if self != None:
             return self.name
         return 'Anonymous'
-
+    
 class UsualDrunk(Drunk):
     def takeStep(self):
         stepChoices = [(0,1), (0,-1), (1, 0), (-1, 0)]
