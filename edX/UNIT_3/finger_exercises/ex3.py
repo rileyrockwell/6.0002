@@ -30,7 +30,7 @@ def stdDevOfLengths(L):
 
     # ensure L is not empty
     if not L:
-        return 'NaN'
+        return float('NaN')
 
     # convert: original list of strings => list of integers
     L = convert_L(L)
