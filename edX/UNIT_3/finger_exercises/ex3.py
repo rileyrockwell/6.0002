@@ -51,3 +51,5 @@ print(stdDevOfLengths(L))
 
 L = []
 print(stdDevOfLengths(L))
+
+L = [10, 4, 12, 15, 20, 5]
