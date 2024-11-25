@@ -431,7 +431,7 @@ def run_simulation(num_robots, speed, capacity, width, height, dirt_amount, min_
 #
 # ANSWER THE FOLLOWING QUESTIONS:
 #
-# 1)How does the performance of the two robot types compare when cleaning 80%
+# 1) How does the performance of the two robot types compare when cleaning 80%
 #       of a 20x20 room?
 #
 #
