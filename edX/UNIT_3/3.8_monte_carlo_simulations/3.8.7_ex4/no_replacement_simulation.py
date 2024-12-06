@@ -6,7 +6,7 @@ def noReplacementSimulation(numTrials):
     drawn. Returns a decimal - the fraction of times 3 
     balls of the same color were drawn.
     '''
-    return -1
+    
 
 
 n = 1
