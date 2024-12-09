@@ -169,9 +169,6 @@ def r_squared(y, estimated):
 
 
 # Problem 3
-import numpy as np
-import pylab
-
 def evaluate_models_on_training(x, y, models):
     """
     For each regression model, compute the R-square for this model with the
@@ -219,7 +216,7 @@ def evaluate_models_on_training(x, y, models):
 
 
 ### Begining of program
-raw_data = Climate('data.csv')
+raw_data = Climate('/workspaces/6.0002/edX/UNIT_4/problem_set_4/data.csv')
 
 # Problem 3
 y = []
