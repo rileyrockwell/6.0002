@@ -118,58 +118,104 @@ End helper code
 """
 
 # Problem 1
+import numpy as np
+
 def generate_models(x, y, degs):
     """
     Generate regression models by fitting a polynomial for each degree in degs
     to points (x, y).
+    
     Args:
-        x: a list with length N, representing the x-coords of N sample points
-        y: a list with length N, representing the y-coords of N sample points
-        degs: a list of degrees of the fitting polynomial
+        x: a list or array-like with length N, representing the x-coords of N sample points
+        y: a list or array-like with length N, representing the y-coords of N sample points
+        degs: a list of integers, representing the degrees of the fitting polynomials
+    
     Returns:
-        a list of numpy arrays, where each array is a 1-d array of coefficients
-        that minimizes the squared error of the fitting polynomial
+        A list of numpy arrays, where each array is a 1-d array of coefficients
+        that minimizes the squared error of the fitting polynomial.
     """
-    # TODO
-    pass
+    models = []
+    for deg in degs:
+        # Fit a polynomial of degree 'deg' to the points (x, y)
+        coeffs = np.polyfit(x, y, deg)
+        models.append(coeffs)
+    return models
+
 
 # Problem 2
 def r_squared(y, estimated):
     """
     Calculate the R-squared error term.
+    
     Args:
-        y: list with length N, representing the y-coords of N sample points
-        estimated: a list of values estimated by the regression model
+        y: list or array-like with length N, representing the y-coords of N sample points
+        estimated: list or array-like with length N, representing the estimated values by the regression model
+    
     Returns:
-        a float for the R-squared error term
+        A float representing the R-squared error term.
     """
-    # TODO
-    pass
+    # Calculate the mean of the actual y values
+    mean_y = sum(y) / len(y)
+    
+    # Total sum of squares (variance of actual y values)
+    total_variance = sum((yi - mean_y) ** 2 for yi in y)
+    
+    # Residual sum of squares (variance of the errors)
+    residual_variance = sum((yi - esti) ** 2 for yi, esti in zip(y, estimated))
+    
+    # Calculate R-squared
+    r2 = 1 - (residual_variance / total_variance)
+    return r2
+
 
 # Problem 3
+import numpy as np
+import pylab
+
 def evaluate_models_on_training(x, y, models):
     """
     For each regression model, compute the R-square for this model with the
     standard error over slope of a linear regression line (only if the model is
     linear), and plot the data along with the best fit curve.
-
-    For the plots, you should plot data points (x,y) as blue dots and your best
-    fit curve (aka model) as a red solid line. You should also label the axes
-    of this figure appropriately and have a title reporting the following
-    information:
-        degree of your regression model,
-        R-square of your model evaluated on the given data points
     Args:
         x: a list of length N, representing the x-coords of N sample points
         y: a list of length N, representing the y-coords of N sample points
         models: a list containing the regression models you want to apply to
-            your data. Each model is a numpy array storing the coefficients of
-            a polynomial.
+                your data. Each model is a numpy array storing the coefficients of
+                a polynomial.
     Returns:
         None
     """
-    # TODO
-    pass
+    x = np.array(x)
+    y = np.array(y)
+    
+    for model in models:
+        degree = len(model) - 1
+        # Generate predictions
+        predictions = np.polyval(model, x)
+        
+        # Compute R-squared value
+        ss_total = np.sum((y - np.mean(y))**2)
+        ss_residual = np.sum((y - predictions)**2)
+        r_squared = 1 - (ss_residual / ss_total)
+        
+        # Calculate standard error of the slope for linear models
+        if degree == 1:
+            slope = model[0]
+            residuals = y - predictions
+            standard_error = np.sqrt(np.sum(residuals**2) / (len(x) - 2)) / np.sqrt(np.sum((x - np.mean(x))**2))
+            print(f"Linear model: Slope = {slope}, Standard Error = {standard_error:.4f}")
+        
+        # Plot the data and the model
+        pylab.figure()
+        pylab.plot(x, y, 'bo', label='Data Points')  # Blue dots for data
+        pylab.plot(x, predictions, 'r-', label=f'Degree {degree} Model')  # Red line for model
+        pylab.xlabel('x')
+        pylab.ylabel('y')
+        pylab.title(f"Degree {degree} Model\nR-squared = {r_squared:.4f}")
+        pylab.legend()
+        pylab.show()
+
 
 
 ### Begining of program
