@@ -155,7 +155,7 @@ def compare_cow_transport_algorithms():
 
 
 if __name__ == "__main__":    
-    filename = '/home/riley/6.0002/OCW/problem_sets/problem_set_1/ps1_cow_data.txt'
+    filename = '/workspaces/6.0002/OCW/problem_sets/problem_set_1/ps1_cow_data.txt'
     cows = load_cows(filename)
 
     print(compare_cow_transport_algorithms())
